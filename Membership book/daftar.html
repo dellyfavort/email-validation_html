@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Daftar Member</title>
+</head>
+<body>
+
+<h2>Daftar Member Buku PDF</h2>
+
+<form onsubmit="return register()">
+
+    <label>Username:</label><br>
+    <input type="text" id="username" required><br><br>
+
+    <label>Password:</label><br>
+    <input type="password" id="password" required><br><br>
+
+    <button type="submit">Daftar</button>
+
+</form>
+
+<script>
+function register() {
+
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+
+    // Buat email otomatis
+    let email = username.toLowerCase() + "@upitra.ac.id";
+
+    // Simpan akun
+    localStorage.setItem("email", email);
+    localStorage.setItem("password", password);
+
+    alert("Akun berhasil dibuat!\nEmail kamu: " + email);
+
+    // langsung ke halaman home
+    window.location.href = "home.html";
+
+    return false;
+}
+</script>
+
+</body>
+</html>

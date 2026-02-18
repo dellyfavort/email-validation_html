@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Member</title>
+</head>
+<body>
+
+<h2>Login Member</h2>
+
+<form onsubmit="return validateLogin()">
+
+    <label>Email:</label><br>
+    <input type="email" id="email" required><br><br>
+
+    <label>Password:</label><br>
+    <input type="password" id="pass" required><br><br>
+
+    <button type="submit">Login</button>
+
+</form>
+
+<p id="error" style="color:red;"></p>
+
+<script>
+function validateLogin() {
+
+    let email = document.getElementById("email").value;
+    let pass = document.getElementById("pass").value;
+
+    let savedEmail = localStorage.getItem("email");
+    let savedPass = localStorage.getItem("password");
+
+    // ✅ 1. Validasi domain
+    if (!email.endsWith("@upitra.ac.id")) {
+        document.getElementById("error").innerText =
+            "Akses ditolak! Gunakan email @upitra.ac.id";
+        return false;
+    }
+
+    // ✅ 2. Cek akun terdaftar
+    if (email !== savedEmail || pass !== savedPass) {
+        document.getElementById("error").innerText =
+            "Email atau password salah / belum terdaftar";
+        return false;
+    }
+
+    // ✅ 3. Jika benar
+    alert("Login berhasil!");
+    window.location.href = "home.html";
+
+    return false;
+}
+</script>
+
+</body>
+</html>
