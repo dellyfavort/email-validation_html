@@ -1,25 +1,100 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
+    <meta charset="UTF-8">
     <title>Login Member</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.25);
+            width: 320px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 25px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            text-align: left;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 5px rgba(102,126,234,0.6);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            background-color: #667eea;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #5a67d8;
+        }
+
+        #error {
+            color: red;
+            margin-top: 10px;
+            min-height: 20px;
+        }
+    </style>
 </head>
+
 <body>
+
+<div class="container">
 
 <h2>Login Member</h2>
 
 <form onsubmit="return validateLogin()">
 
-    <label>Email:</label><br>
-    <input type="email" id="email" required><br><br>
+    <label>Email:</label>
+    <input type="email" id="email" required>
 
-    <label>Password:</label><br>
-    <input type="password" id="pass" required><br><br>
+    <label>Password:</label>
+    <input type="password" id="pass" required>
 
     <button type="submit">Login</button>
 
 </form>
 
-<p id="error" style="color:red;"></p>
+<p id="error"></p>
+
+</div>
 
 <script>
 function validateLogin() {
@@ -30,21 +105,21 @@ function validateLogin() {
     let savedEmail = localStorage.getItem("email");
     let savedPass = localStorage.getItem("password");
 
-    // ✅ 1. Validasi domain
+    // Validasi domain
     if (!email.endsWith("@upitra.ac.id")) {
         document.getElementById("error").innerText =
             "Akses ditolak! Gunakan email @upitra.ac.id";
         return false;
     }
 
-    // ✅ 2. Cek akun terdaftar
+    // Cek akun terdaftar
     if (email !== savedEmail || pass !== savedPass) {
         document.getElementById("error").innerText =
             "Email atau password salah / belum terdaftar";
         return false;
     }
 
-    // ✅ 3. Jika benar
+    // Jika benar
     alert("Login berhasil!");
     window.location.href = "home.html";
 
